@@ -23,7 +23,7 @@
 <div class="container">
 	<section id="content">
 		<form action="/login" method="POST" enctype="multipart/form-data" >
-			<h1>登 录</h1>
+			<h1><font color="yellow">登 录</font></h1>
 			<div>
 				<input type="text" placeholder="Username" required="" id="username" name="username" />
 			</div>
@@ -32,8 +32,8 @@
 			</div>
 			<div>
 				<input type="submit" value="登录" />
-				<a href="/forget_passwd">忘记密码?</a>
-				<a href="/register">注册</a>
+				<a href="/forget_passwd"><font color="yellow">忘记密码?</font></a>
+				<a href="/register"><font color="yellow">注册</font></a>
 			</div>
 <center><p style="color:red">{{ error|default('')  }}</p></center>
 		</form><!-- form -->

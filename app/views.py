@@ -148,10 +148,20 @@ def host():
     return render_template('host.html',hostname=hostname[0],hostip=hostip[0],passwd=passwd[0])
     
 
+###特效网页
+@app.route('/magic/<name>')
+def magic(name=None):
+    if name == "3DFire":
+    	return render_template("3DFire.html")
+    elif name == "paomo":
+	return render_template('paomo.html')
+    else:
+	return render_template("404.html")
 
 
-
-
+@app.route('/paomo')
+def paomo():
+    return render_template('paomo.html')
 
 
 
