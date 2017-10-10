@@ -10,11 +10,16 @@
    	</style>
    </head>
 <body>
-	<p>host:{{ hostname }}</p>
+	<!--<p>host:{{ hostname }}</p>
     <p>ip:{{ hostip}}</p>
-    <p>passwd:{{ passwd }}</p>
-    
-    
-    
+    <p>passwd:{{ passwd }}</p>-->
+   {% for i in record %}
+   <p style="color:red">主机:{{ i[1]  }}</p>
+   <p>ip:{{ i[2]  }}</p>
+   <p>passwd_root:{{ i[3]  }}</p>
+   <p>passwd_db:{{ i[4]  }}</p>
+   <p>ssh_port:{{ i[5]  }}</p>
+   <br>
+   {% endfor %}
 </body>
 </html>

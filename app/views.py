@@ -10,7 +10,7 @@ from app import app
 from flask import render_template,request,url_for,session,request,flash,redirect
 #from app.forms import LoginForm,RegistForm
 from werkzeug import secure_filename
-
+import models as db
 
 @app.route('/')
 @app.route('/index.html')
@@ -31,14 +31,22 @@ def test():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
+    #连接数据库
+    cur=db.conn_db()
+    cur=cur.conn()
     #print '\n'.join(['%s:%s' % item for item in request.__dict__.items()])
     #print request.cookies
     if request.method == 'POST':
-    #form = forms.LoginForm()
-    #print '\n'.join(['%s:%s' % item for item in form.__dict__.items()])
+        #form = forms.LoginForm()
+        #print '\n'.join(['%s:%s' % item for item in form.__dict__.items()])
     	username=request.form.get('username')
     	password=request.form.get('password')
-    	if username=="root" and password=="flasker0115":
+	sql=("select passwd from user where username='%s'") % username
+	cur.execute(sql)
+        result=cur.fetchone()
+	cur.close()
+    	#if username==str(result[0]) and password==str(result[1]):
+	if password==result[0]:
 	    return redirect(url_for('host'))
     	else:
 	    error="*登录失败：用户名或密码错误！"
@@ -132,9 +140,9 @@ def upload():
 
 
 ###host
-@app.route('/host')
-def host():
-    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost')
+#@app.route('/host')
+def host1():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
     cur=conn.cursor()
     conn.select_db('system')
     cur.execute("select hostname from host")
@@ -143,28 +151,51 @@ def host():
     hostip=cur.fetchone()
     cur.execute("select passwd from host")
     passwd=cur.fetchone()
+    passwd=passwd
     cur.close()
     conn.close()
     return render_template('host.html',hostname=hostname[0],hostip=hostip[0],passwd=passwd[0])
     
 
 ###特效网页
-@app.route('/magic/<name>')
+@app.route('/html5')
+@app.route('/html5/')
+def html5():
+    return render_template("html5.html")
+
+@app.route('/html5/<name>')
 def magic(name=None):
     if name == "3DFire":
     	return render_template("3DFire.html")
     elif name == "paomo":
 	return render_template('paomo.html')
+    elif name == "3DFlower":
+  	return render_template('3DFlower.html')
+    elif name == "shaizi":
+        return render_template('shaizi.html')
+    elif name == "tree":
+        return render_template('tree.html')
+    elif name == "pac-man":
+        return render_template('pac-man.html')
+    elif name == "html5":
+        return render_template('html5.html')
     else:
-	return render_template("404.html")
-
-
-@app.route('/paomo')
-def paomo():
-    return render_template('paomo.html')
+	return render_template("html5.html")
 
 
 
+#host
+#@app.route('/host')
+def host():
+    #连接数据库
+    cur=db.conn_db()
+    cur=cur.conn()
+    
+    sql="select * from host"
+    cur.execute(sql)
+    record=cur.fetchall()
+    cur.close()
+    return render_template('host.html',record=record)
 
 
 
