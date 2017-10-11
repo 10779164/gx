@@ -198,6 +198,46 @@ def host():
     return render_template('host.html',record=record)
 
 
+#test
+@app.route('/h')
+@app.route('/h/<hostname>')
+def h(hostname=None):
+    if hostname==None:
+    	return render_template('h.html')
+    else:
+	#连接数据库
+    	cur=db.conn_db()
+    	cur=cur.conn()
+
+    	sql="select * from host where hostname='%s'" % hostname
+    	cur.execute(sql)
+    	record=cur.fetchall()
+    	cur.close()
+    	return render_template('hshow.html',record=record)
+
+@app.route('/h/h1')
+@app.route('/h/h1.html')
+def h1():
+    cur=db.conn_db()
+    cur=cur.conn()
+
+    sql="select hostname from host"
+    cur.execute(sql)
+    record=cur.fetchall()
+    cur.close()
+    return render_template('h1.html',record=record)
+    
+    
+
+
+
+
+
+
+
+
+
+
 
 
 

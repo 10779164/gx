@@ -336,3 +336,77 @@ GET
 113.246.152.61 - - [11/Oct/2017 09:17:35] "GET / HTTP/1.1" 200 -
 113.246.152.61 - - [11/Oct/2017 09:17:35] "GET / HTTP/1.1" 200 -
 222.240.139.51 - - [11/Oct/2017 09:41:44] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 10:19:51] "GET /favicon.ico HTTP/1.1" 200 -
+218.77.119.3 - - [11/Oct/2017 11:14:15] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:16:25] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:58:09] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:58:10] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:58:21] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:58:23] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:58:24] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 11:58:25] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 12:02:28] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 12:02:29] "POST /login HTTP/1.1" 302 -
+113.246.152.61 - - [11/Oct/2017 12:02:29] "GET /host HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 12:02:30] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:50:08] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:27] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:30] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:31] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:31] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:33] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:33] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:33] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:34] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:34] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:34] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:34] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:35] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 13:52:45] "POST /login HTTP/1.1" 302 -
+113.246.152.61 - - [11/Oct/2017 13:52:45] "GET /host HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 13:52:57] "POST /login HTTP/1.1" 200 -
+106.120.161.68 - - [11/Oct/2017 13:53:10] "GET / HTTP/1.1" 200 -
+106.120.160.109 - - [11/Oct/2017 13:53:23] "GET /login HTTP/1.1" 200 -
+101.199.112.51 - - [11/Oct/2017 13:53:26] "GET / HTTP/1.1" 200 -
+101.199.112.51 - - [11/Oct/2017 13:53:26] "GET /static/css/index.css HTTP/1.1" 200 -
+101.199.108.120 - - [11/Oct/2017 13:53:32] "GET /login HTTP/1.1" 200 -
+101.199.108.120 - - [11/Oct/2017 13:53:33] "GET /static/css/index.css HTTP/1.1" 200 -
+ * Detected change in '/flask/gx/app/views.py', reloading
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+GET
+ * Restarting with stat
+Traceback (most recent call last):
+  File "server.py", line 7, in <module>
+    from app import app
+  File "/flask/gx/app/__init__.py", line 6, in <module>
+    from app import views
+  File "/flask/gx/app/views.py", line 204
+    def h(None):
+SyntaxError: cannot assign to None
