@@ -185,7 +185,7 @@ def magic(name=None):
 
 
 #host
-#@app.route('/host')
+@app.route('/host')
 def host():
     #连接数据库
     cur=db.conn_db()

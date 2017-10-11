@@ -135,3 +135,204 @@ GET
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 812-177-094
+113.246.105.94 - - [10/Oct/2017 17:21:26] "GET /upload HTTP/1.1" 200 -
+113.246.105.94 - - [10/Oct/2017 17:21:26] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.105.94 - - [10/Oct/2017 17:21:33] "POST /upload HTTP/1.1" 200 -
+113.246.105.94 - - [10/Oct/2017 17:21:33] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.105.94 - - [10/Oct/2017 17:33:26] "GET / HTTP/1.1" 200 -
+113.246.105.94 - - [10/Oct/2017 17:33:26] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.105.94 - - [10/Oct/2017 17:33:26] "GET /static/css/background.jpg HTTP/1.1" 304 -
+43.250.200.59 - - [10/Oct/2017 17:53:21] "POST /login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/flask/gx/app/views.py", line 49, in login
+    if password==result[0]:
+TypeError: 'NoneType' object has no attribute '__getitem__'
+43.250.200.59 - - [10/Oct/2017 17:53:21] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:21] "GET /login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:21] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:22] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:22] "GET /login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:22] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:28] "GET /login HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:39] "POST /login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/flask/gx/app/views.py", line 50, in login
+    return redirect(url_for('host'))
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/usr/lib/python2.7/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'host'. Did you mean 'test' instead?
+43.250.200.59 - - [10/Oct/2017 17:53:40] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:40] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:40] "GET /login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:40] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:40] "GET /login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:53:40] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:04] "GET /host HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:04] "GET /static/js/data.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:04] "GET /static/js/bodymovin.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:30] "POST /login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/flask/gx/app/views.py", line 50, in login
+    return redirect(url_for('host'))
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/usr/lib/python2.7/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'host'. Did you mean 'test' instead?
+43.250.200.59 - - [10/Oct/2017 17:54:30] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:30] "GET /login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:30] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:30] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:30] "GET /login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:54:31] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:55:00] "POST /login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/flask/gx/app/views.py", line 50, in login
+    return redirect(url_for('host'))
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/usr/lib/python2.7/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'host'. Did you mean 'test' instead?
+43.250.200.59 - - [10/Oct/2017 17:55:00] "GET /login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:55:00] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:55:00] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:55:01] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:55:01] "GET /login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+43.250.200.59 - - [10/Oct/2017 17:55:02] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:00] "GET /login HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:18] "POST /login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/flask/gx/app/views.py", line 50, in login
+    return redirect(url_for('host'))
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/usr/lib/python2.7/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+BuildError: Could not build url for endpoint 'host'. Did you mean 'test' instead?
+110.52.211.196 - - [10/Oct/2017 21:39:18] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:18] "GET /login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:18] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:19] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:19] "GET /login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:19] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:39:46] "GET /host HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:40:05] "GET /html5/ HTTP/1.1" 200 -
+110.52.211.196 - - [10/Oct/2017 21:40:11] "GET /html5/3DFire HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 08:57:19] "GET /login HTTP/1.1" 200 -
+ * Detected change in '/flask/gx/app/views.py', reloading
+GET
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 812-177-094
+113.246.152.61 - - [11/Oct/2017 09:15:13] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:15:13] "GET /static/css/index.css HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 09:15:13] "GET /static/css/background.jpg HTTP/1.1" 304 -
+113.246.152.61 - - [11/Oct/2017 09:15:13] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:15:16] "POST /login HTTP/1.1" 302 -
+113.246.152.61 - - [11/Oct/2017 09:15:16] "GET /host HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:15:16] "GET /favicon.ico HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:17:04] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:17:04] "GET /static/css/index.css HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:17:04] "GET /static/css/background.jpg HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:17:35] "GET / HTTP/1.1" 200 -
+113.246.152.61 - - [11/Oct/2017 09:17:35] "GET / HTTP/1.1" 200 -
+222.240.139.51 - - [11/Oct/2017 09:41:44] "GET /favicon.ico HTTP/1.1" 200 -
