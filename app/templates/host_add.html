@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				height: 1200px;
+			}
+			
+			#left{
+				width: 25%;
+				height: 100%;
+				float: left;
+			}
+			#mid{
+				width: 50%;
+				height: 100%;
+				background-color: #B8DDFF;
+				float: left;
+			}
+			#right{
+				float: left;
+			}
+			label{
+				margin: 2px auto;
+			}
+			input{
+				margin: 2px auto;
+				width: auto;
+				height: 30px;
+			}
+			span{
+				font-size: 30px;
+			}
+			.button{
+				font-size: 20px;
+				color: #ED1C24;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="left"></div>
+		<div id="mid">
+			<form action="/host_add" method="post" class="STYLE-NAME">
+			<center><h1>添加主机</h1></center>
+			<label>
+			<span>主机名:</span>
+			<input id="hostname" type="text" name="hostname" placeholder="主机名称" />
+			</label>
+			<br>
+			<label>
+			<span>IP地址:</span>
+			<input id="ip" type="text" name="ip" placeholder="主机IP地址" />
+			</label>
+			<br>
+			<label>
+			<span>root密码:</span>
+			<input id="passwd_root" name="passwd_root" placeholder="root用户密码" />
+			</label>
+			<br>
+			<label>
+			<span>数据库密码:</span>
+			<input id="passwd_db" name="passwd_db" placeholder="数据库root用户密码" />
+			</label>
+			<br>
+			<label>
+			<span>ssh端口:</span>
+			<input id="ssh_port" name="ssh_port" placeholder="ssh登录端口" />
+			<br>
+			</label>
+			<input type="submit" class="button" value="提交" />
+			</label>
+		 	<br>
+			<br>
+			<font color="red">{{ result|default('') }}
+			</form>
+		</div>
+		<div id="right"></div>
+	</body>
+</html>
+
