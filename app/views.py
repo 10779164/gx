@@ -228,8 +228,33 @@ def h1():
     return render_template('h1.html',record=record)
     
     
-
-
+#添加主机
+@app.route('/host_add', methods = ['GET', 'POST'])
+@app.route('/host_add.html')
+def host_add():
+    #连接数据库
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    #
+    if request.method == 'POST':
+	hostname=request.form.get('hostname')
+	ip=request.form.get('ip')
+	passwd_root=request.form.get('passwd_root')
+	passwd_db=request.form.get('passwd_db')
+	ssh_port=int(request.form.get('ssh_port'))
+	try:
+    	    sql=("insert into host value(NULL,'%s','%s','%s','%s','%s')") % ( hostname, ip, passwd_root, passwd_db, ssh_port)
+	    cur.execute(sql)
+	    conn.commit()
+	    cur.close()
+	    result="**提交成功"
+	    return render_template('host_add.html',result=result)
+	except:
+	    result="**submit error：error data type！"
+	    return render_template('host_add.html',result=result)
+    else:
+ 	return render_template('host_add.html',result='')
 
 
 
