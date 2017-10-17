@@ -1,6 +1,11 @@
 import MySQLdb
 
 class conn_db():
+    def commit(self):
+        conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+	conn.select_db('hosts')
+	return conn	
+
     def conn(self):
     	conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
     	conn.select_db('hosts')

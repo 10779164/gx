@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+	<head>
+    	<title>image transform</title>
+	<link rel="icon" href="favicon.ico" type="static/images/logo.png" />
+	</head>
+<body>
+    <h1 style="color:#B8DDFF">上传一张图片试试~~</h1>
+    <form action="/image" method='POST' enctype='multipart/form-data'>
+      <input type='file' name="filename">
+      <input type='submit' value='Upload'>
+    </form>
+    <font color="red">{{ result }}</font>
+</body>
+</html>

@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #encoding=utf8
 from flask import Flask
 app = Flask(__name__)
@@ -8,4 +9,4 @@ from app import app
 app.debug = True
 #app.config.from_object(config)
 
-app.run(host='0.0.0.0',port=828,threaded='True')
+app.run(host='0.0.0.0',port=80,threaded='True')

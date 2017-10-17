@@ -11,23 +11,33 @@ from flask import render_template,request,url_for,session,request,flash,redirect
 #from app.forms import LoginForm,RegistForm
 from werkzeug import secure_filename
 import models as db
+import image
 
 @app.route('/')
 @app.route('/index.html')
 def index():
     user='flask'
-    print request.method
+    #print request.method
     return render_template('index.html',title='hello',user=user)
+
+
+@app.route('/test') 
+def test():
+    #print request
+    return render_template('test.html',result=request.remote_addr)
+
+
+@app.route('/ip') 
+def ip():
+    #print request
+    return render_template('ip.html',result=request.remote_addr)
+
 
 @app.route('/user')
 @app.route('/user/<user>')
 def user(user=None):
     return render_template('index.html',title='hello',user=user)
 
-
-@app.route('/test')
-def test():
-    return render_template('login.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -139,6 +149,30 @@ def upload():
         return render_template('upload_file.html',result=None)
 
 
+###图片转换
+@app.route('/image',methods=('GET','POST'))
+def upload_image():
+    if request.method == 'POST':
+        #print '\n'.join(['%s:%s' % item for item in request.__dict__.items()])
+        try:
+            f = request.files['filename']
+            print f.filename
+            upload_path=os.path.join('/flask/gx/uploads/images/',secure_filename(f.filename))
+            f.save(upload_path)
+            img_src="/flask/gx/uploads/images/"+str(f.filename)
+    	    filename=f.filename
+	    image.image_tran(img_src,filename)
+            #result="提示：文件"+f.filename+"上传成功"
+            #f.save(os.path.join(app.config['file_path'],'/',secure_filename(f.filename))
+            #return redirect(url_for('upload'))
+            return render_template('image.html', result=f.filename)
+        except Exception,e:
+            result="文件上传失败：仅支持图片格式~~"
+            return render_template('upload_image.html', result=result)
+    else:
+        return render_template('upload_image.html',result='')
+
+
 ###host
 #@app.route('/host')
 def host1():
@@ -221,7 +255,7 @@ def h1():
     cur=db.conn_db()
     cur=cur.conn()
 
-    sql="select hostname from host"
+    sql="select distinct hostname from host"
     cur.execute(sql)
     record=cur.fetchall()
     cur.close()
