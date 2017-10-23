@@ -4,36 +4,23 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style>
-			p{
-				text-align: center;
-			}
+
 		</style>
 	</head>
 	<body>
-		<!--
-       	<p style="text-align: center;">主机列表</p>
-		<hr style="color: aquamarine;">
-		<p><a href="http://120.77.87.72:828/" target="right">主页</a></p>
+		<!--<p><a href="http://120.77.87.72:828/" target="right">主页</a></p>
 		<p><a href="https://www.baidu.com" target="right">百度</a></p>
 		<p><a href="https://www.taobao.com" target="right">淘宝</a></p>
 		<p><a href="https://www.bilibili.com" target="right">哔哩哔哩</a></p>
 		<p><a href="http://dormousehole.readthedocs.io/en/latest/" target="right">flask</a></p>
 		<p><a href="http://bbs.colg.cn/forum-171-1.html" target="right">colg</a></p>
-		<p><a href="https://www.baidu.com" target="right">百度</a></p>
-		
-		<form action="/regist/" method="POST">
- 	   
-</form>
-		-->
-		<p style="text-align: center;">主机列表</p>
-		<hr style="color: aquamarine;">
-		<center><p><a href="http://bbs.colg.cn/forum-171-1.html" target="right">首页^-^</a></p></center>
+		<p><a href="https://www.baidu.com" target="right">百度</a></p>-->
+		<center><p><a href="https://www.bilibili.com" target="right">首页^-^</a></p></center>
 		<br>
 		{% for host in record %}
 		<center><p><a href="http://120.77.87.72/h/{{ host[0] }}" target="right"> {{ host[0] }} </p></center>
 		<br>
 		{% endfor %}
-
 	</body>
 	
 </html>

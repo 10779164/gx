@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>删除主机</title>
+		<script>
+			
+			function host_del(){    
+        			form=document.getElementById("del_host");  
+        			form.action="/del_host";  
+        			form.method="post";  
+        			form.submit();
+				alert("主机删除成功");  
+    					}  
+		</script>
+	</head>
+	<body>
+		<h1>删除主机</h1>
+		<form action="host_del" method="post" id="del_host">
+       		 	<!--<input id="hostname" type="text" name="hostname" placeholder="主机名称" />
+        		<a href="http://120.77.87.72/host_add" target="_blank"><button id="t">添加主机</button></a>
+        		<form action="host_del">
+        		<input type="button" value="确认" id="del">-->
+        		<input type="search" placeholder="请输入主机IP或主机名" name="host">
+        		<input type="submit" value="搜索" onclik="get_host()">
+		</form>
+ 		{% if result != '' %}	
+		<p style="text-align: center;">主机信息</p>
+                <hr style="color: aquamarine;">
+                <br>
+                {% for host in result[0] %}
+                <p> {{ host }} </p>
+                <br>
+                {% endfor %}
+		<hr>
+		<button onclick="host_del()" id="qr">确认</button>
+		<a href="http://120.77.87.72/host_del_search"><button id="qx">取消</button></a>
+		{% else %}
+		<p style="color:red">主机不存在!</p>
+		{% endif %}
+	</body>
+</html>

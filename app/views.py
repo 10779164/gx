@@ -260,11 +260,15 @@ def h1():
     record=cur.fetchall()
     cur.close()
     return render_template('h1.html',record=record)
-    
-    
+       
+@app.route('/h/h_top.html')
+def h_top():
+    return render_template('h_top.html') 
+
+ 
 #添加主机
 @app.route('/host_add', methods = ['GET', 'POST'])
-@app.route('/host_add.html')
+@app.route('/hadd.html')
 def host_add():
     #连接数据库
     conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
@@ -276,19 +280,63 @@ def host_add():
 	ip=request.form.get('ip')
 	passwd_root=request.form.get('passwd_root')
 	passwd_db=request.form.get('passwd_db')
-	ssh_port=int(request.form.get('ssh_port'))
+	ssh_port=request.form.get('ssh_port')
 	try:
     	    sql=("insert into host value(NULL,'%s','%s','%s','%s','%s')") % ( hostname, ip, passwd_root, passwd_db, ssh_port)
 	    cur.execute(sql)
 	    conn.commit()
-	    cur.close()
+	    #cur.close()
 	    result="**提交成功"
-	    return render_template('host_add.html',result=result)
-	except:
-	    result="**submit error：error data type！"
-	    return render_template('host_add.html',result=result)
+	    return render_template('hadd.html',result=result)
+	except Exception,e:
+	    conn.rollback()
+	    result='"**submit error:'+str(e)+'"'
+	    return render_template('hadd.html',result=result)
+	cur.close()
     else:
- 	return render_template('host_add.html',result='')
+ 	return render_template('hadd.html',result='')
+
+
+@app.route('/host_del',methods = ['GET', 'POST'])
+@app.route('/host_del_search',methods = ['GET', 'POST'])
+def host_del():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    if request.method == 'POST':
+    	value=request.form.get('host')
+	sql=("select * from host where hostname='%s'") % value 
+	cur.execute(sql)
+	record=cur.fetchall()
+	conn.commit()
+	conn.close()
+	#print record
+	if len(record) == 0:
+	    result=""
+	    return render_template('host_del.html',result=result)
+	else:
+	    result=record
+	    return render_template('host_del.html',result=result)
+    else:
+	return render_template('host_del.html',result='')
+
+
+@app.route('/del_host',methods = ['POST'])
+def del_host():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts') 
+    value=request.form.get('host')
+    print value
+    sql=("delete from host where hostname='%s'") % value
+    cur.execute(sql)   
+    record=cur.fetchall()
+    conn.commit()
+    conn.close()
+    result=""
+    return render_template('host_del.html',result=result) 
+       
+
 
 
 
