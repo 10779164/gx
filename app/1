@@ -298,61 +298,28 @@ def host_add():
 
 
 @app.route('/host_del',methods = ['GET', 'POST'])
-@app.route('/host_del_search',methods = ['GET', 'POST'])
 def host_del():
     conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
     cur=conn.cursor()
     conn.select_db('hosts')
     if request.method == 'POST':
     	value=request.form.get('host')
-	sql=("select * from host where hostname='%s' or ip='%s'") % (value,value) 
+	a=value
+	sql=("select * from host where hostname=%s or ip=%s") % value a
 	cur.execute(sql)
-
-	field=[]
-	for row in cur.description:
-		field.append(row[0])
-		
-
 	record=cur.fetchall()
-	conn.commit()
-	conn.close()
-	#print record
+	print record
 	if len(record) == 0:
-	    result=""
+	    result="搜索的主机不存在！"
 	    return render_template('host_del.html',result=result)
 	else:
-	    result=dict(zip(field,record[0]))
+	    result=record
 	    return render_template('host_del.html',result=result)
     else:
-	return render_template('host_del_search.html',result='')
+	return render_template('host_del.html')
 
 
-@app.route('/del_host',methods = ['POST'])
-def del_host():
-    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
-    cur=conn.cursor()
-    conn.select_db('hosts') 
-    value=request.form.get('host')
-    print value
-    sql=("delete from host where hostname='%s'") % value
-    cur.execute(sql)   
-    record=cur.fetchall()
-    conn.commit()
-    conn.close()
-    result=""
-    return render_template('host_del.html',result=result) 
-       
 
-@app.route('/ajax_test')
-def ajax_test():
-    return render_template('ajax.html')
-
-@app.route('/ajax',methods=['POST'])
-def ajax():
-    print request.method
-    data=request.form.get('data')
-    print data
-    return render_template('index.html')
 
 
 

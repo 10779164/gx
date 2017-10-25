@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			function test(){
+				
+				var request;
+				request=new XMLHttpRequest();
+				request.open("POST","/ajax",true);
+				request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+				text=document.getElementById("t").innerText;
+				var data=text
+				request.send(data);
+				
+				request.onreadystatechange = function(){
+					if (request.readyState == 4 && request.status == 200){
+						document.getElementById("t").innerHTML=request.responseText;
+						alert(request.responseText)
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<p onclick="test()" id="t">test</p>
+	</body>
+</html>

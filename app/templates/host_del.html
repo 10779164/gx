@@ -5,14 +5,14 @@
 		<title>删除主机</title>
 		<script>
 			
-			function host_del(){    
+			<!--function host_del(){    
         			form=document.getElementById("del_host");  
         			form.action="/del_host";  
         			form.method="post";  
         			form.submit();
 				alert("主机删除成功");  
     					}  
-		</script>
+		</script>-->
 	</head>
 	<body>
 		<h1>删除主机</h1>
@@ -28,12 +28,14 @@
 		<p style="text-align: center;">主机信息</p>
                 <hr style="color: aquamarine;">
                 <br>
-                {% for host in result[0] %}
-                <p> {{ host }} </p>
+                
+		{% for key in result %}
+                <p id="{{ key }}"> {{ key }}:{{ result[key] }} </p>
                 <br>
-                {% endfor %}
+                
+		{% endfor %}
 		<hr>
-		<button onclick="host_del()" id="qr">确认</button>
+		<button>确认</button>
 		<a href="http://120.77.87.72/host_del_search"><button id="qx">取消</button></a>
 		{% else %}
 		<p style="color:red">主机不存在!</p>
