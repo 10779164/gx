@@ -349,8 +349,8 @@ def ajax_test():
 
 @app.route('/ajax',methods=['POST'])
 def ajax():
-    print request.method
-    data=request.form.get('data')
+    #form=to_dict(request.form)
+    data=request.form.to_dict()
     print data
     return render_template('index.html')
 
