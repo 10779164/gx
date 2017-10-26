@@ -10,7 +10,7 @@
 				request=new XMLHttpRequest();
 				request.open("POST","/ajax",true);
 				request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
-				text=document.getElementById("t").innerText;
+				text=document.getElementById("IP").innerText;
 				var data=text
 				request.send(data);
 				
@@ -25,6 +25,6 @@
 		</script>
 	</head>
 	<body>
-		<p onclick="test()" id="t">test</p>
+		<p onclick="test()" id="IP">120.77.87.72</p>
 	</body>
 </html>

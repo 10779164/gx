@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>删除主机</title>
+		<title>查询主机</title>
 		<script>
 			function del_host(){
 				var request;
@@ -30,16 +30,16 @@
 		</script>
 	</head>
 	<body>
-		<h1>删除主机</h1>
-		<form action="host_del" method="post" id="del_host">
+		<h1>查询主机</h1>
+		<form action="host_query" method="post" id="del_host">
        		 	<!--<input id="hostname" type="text" name="hostname" placeholder="主机名称" />
         		<a href="http://120.77.87.72/host_add" target="_blank"><button id="t">添加主机</button></a>
         		<form action="host_del">
         		<input type="button" value="确认" id="del">-->
         		<input type="search" placeholder="请输入主机IP或主机名" name="host">
-        		<input type="submit" value="搜索">
+        		<input type="submit" value="搜索" onclik="get_host()">
 		</form>
- 		{% if result != '' %}	
+ 		{% if result != '' and result != 'default' %}	
 		<p style="text-align: center;">主机信息</p>
                 <hr style="color: aquamarine;">
                 <br>
@@ -50,10 +50,13 @@
                 
 		{% endfor %}
 		<hr>
-		<button onclick="del_host()">确认</button>
-		<a href="http://120.77.87.72/host_del_search"><button id="qx">取消</button></a>
+		<a href="http://120.77.87.72/host_query"><button id="qx">确认</button></a>
+	
+		{% elif result == 'default' %}
+		<br>
 		{% else %}
 		<p style="color:red">主机不存在!</p>
 		{% endif %}
 	</body>
 </html>
+

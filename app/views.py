@@ -332,16 +332,51 @@ def del_host():
     conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
     cur=conn.cursor()
     conn.select_db('hosts') 
-    value=request.form.get('host')
+    value=request.form.to_dict()
     print value
-    sql=("delete from host where hostname='%s'") % value
+    for key in value:
+        ip=key    
+    
+    ip=ip.split(":")[1]
+    sql=("delete from host where ip='%s'") % ip
     cur.execute(sql)   
     record=cur.fetchall()
     conn.commit()
     conn.close()
-    result=""
-    return render_template('host_del.html',result=result) 
+    
+    return render_template('host_del_search.html') 
        
+
+
+##查询主机
+@app.route('/host_query',methods=['GET','POST'])
+def host_query():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    if request.method == 'POST':
+        value=request.form.get('host')
+        sql=("select * from host where hostname='%s' or ip='%s'") % (value,value)
+        cur.execute(sql)
+
+        field=[]
+        for row in cur.description:
+                field.append(row[0])
+
+
+        record=cur.fetchall()
+        conn.commit()
+        conn.close()
+        #print record
+        if len(record) == 0:
+            result=""
+            return render_template('host_query.html',result=result)
+        else:
+            result=dict(zip(field,record[0]))
+            return render_template('host_query.html',result=result)
+    else:
+        return render_template('host_query.html',result='default')
+
 
 @app.route('/ajax_test')
 def ajax_test():
@@ -352,6 +387,8 @@ def ajax():
     #form=to_dict(request.form)
     data=request.form.to_dict()
     print data
+    for key in data:
+ 	print key
     return render_template('index.html')
 
 
