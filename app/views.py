@@ -378,6 +378,70 @@ def host_query():
         return render_template('host_query.html',result='default')
 
 
+##修改主机
+@app.route('/host_modify',methods=['GET','POST'])
+def host_modify():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    if request.method == 'POST':
+        value=request.form.get('host')
+        sql=("select * from host where hostname='%s' or ip='%s'") % (value,value)
+        cur.execute(sql)
+
+        field=[]
+        for row in cur.description:
+                field.append(row[0])
+
+
+        record=cur.fetchall()
+        conn.commit()
+        conn.close()
+        #print record
+        if len(record) == 0:
+            result=""
+            return render_template('host_modify.html',result=result)
+        else:
+            result=dict(zip(field,record[0]))
+            return render_template('host_modify.html',result=result)
+    else:
+        return render_template('host_modify.html',result='default')
+
+
+
+
+@app.route('/modify_host',methods=['GET','POST'])
+def modify_host():
+    #连接数据库
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    #
+    if request.method == 'POST':
+	id=request.form.get('id')
+        hostname=request.form.get('hostname')
+        ip=request.form.get('ip')
+        passwd_root=request.form.get('passwd_root')
+        passwd_db=request.form.get('passwd_db')
+        ssh_port=request.form.get('ssh_port')
+        try:
+            sql=("update host set hostname='%s',ip='%s',passwd_root='%s',passwd_db='%s',ssh_port='%s' where id='%s'") % ( hostname, ip, passwd_root, passwd_db, ssh_port, id)
+            cur.execute(sql)
+            conn.commit()
+            #cur.close()
+            result="修改成功"
+            return render_template('host_modify.html',result=result)
+        except Exception,e:
+            conn.rollback()
+            result='"**submit error:'+str(e)+'"'
+            return render_template('host_modify.html',result=result)
+        cur.close()
+    else:
+        return render_template('host_modify.html',result='')
+    
+
+
+
 @app.route('/ajax_test')
 def ajax_test():
     return render_template('ajax.html')

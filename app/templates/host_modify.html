@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>删除主机</title>
+		<title>修改主机</title>
 		<script>
 			function del_host(){
 				var request;
@@ -35,8 +35,8 @@
 		</script>
 	</head>
 	<body>
-		<h1>删除主机</h1>
-		<form action="host_del" method="post" id="del_host">
+		<h1>修改主机</h1>
+		<form action="/host_modify" method="post" id="del_host">
        		 	<!--<input id="hostname" type="text" name="hostname" placeholder="主机名称" />
         		<a href="http://120.77.87.72/host_add" target="_blank"><button id="t">添加主机</button></a>
         		<form action="host_del">
@@ -48,17 +48,20 @@
 		<p style="text-align: center;">主机信息</p>
                 <hr style="color: aquamarine;">
                 <br>
-                
+        <form action="/modify_host" method="post">        
 		{% for key in result %}
-                <p id="{{ key }}" style="color:"> {{ key }}:{{ result[key] }} </p>
+				<span>{{ key }}:</span>
+                <input name="{{ key }}" value="{{ result[key] }}">
                 <br>
                 
 		{% endfor %}
 		<hr>
-		<a href="http://120.77.87.72/host_del_search"><button id="qx" style="float:right;margin:2px">取消</button></a>
-		<button onclick="del_host()" style="color:red;float:right;margin:2px">删除主机</button>
+		<a href="http://120.77.87.72/host_query"><button id="qx" style="float:right;margin:2px">取消</button></a>
+		<input type="submit" value="确认修改" style="color: #ED1C24;float: right;">
+		</form>
 		{% else %}
 		<p style="color:red">主机不存在!</p>
 		{% endif %}
 	</body>
 </html>
+
