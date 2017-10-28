@@ -174,7 +174,7 @@ def upload_image():
 
 
 ###host
-#@app.route('/host')
+@app.route('/host')
 def host1():
     conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
     cur=conn.cursor()
@@ -219,7 +219,7 @@ def magic(name=None):
 
 
 #host
-@app.route('/host')
+#@app.route('/host')
 def host():
     #连接数据库
     cur=db.conn_db()
@@ -454,7 +454,6 @@ def ajax():
     for key in data:
  	print key
     return render_template('index.html')
-
 
 
 

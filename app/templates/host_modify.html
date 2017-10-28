@@ -44,21 +44,29 @@
         		<input type="search" placeholder="请输入主机IP或主机名" name="host">
         		<input type="submit" value="搜索">
 		</form>
- 		{% if result != '' %}	
+ 		{% if result != '' and result != 'default' %}	
 		<p style="text-align: center;">主机信息</p>
                 <hr style="color: aquamarine;">
                 <br>
         <form action="/modify_host" method="post">        
 		{% for key in result %}
-				<span>{{ key }}:</span>
+		{% if key == 'id' %}
+		<span>{{ key }}:{{ result[key] }}
+		<br>
+		<br>
+		{% else %}
+		<span>{{ key }}:</span>
                 <input name="{{ key }}" value="{{ result[key] }}">
                 <br>
-                
+		<br>
+                {% endif %}
 		{% endfor %}
 		<hr>
 		<a href="http://120.77.87.72/host_query"><button id="qx" style="float:right;margin:2px">取消</button></a>
 		<input type="submit" value="确认修改" style="color: #ED1C24;float: right;">
 		</form>
+		{% elif result == 'default' %}
+		<br>
 		{% else %}
 		<p style="color:red">主机不存在!</p>
 		{% endif %}
