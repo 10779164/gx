@@ -460,16 +460,12 @@ def ajax():
 
 @app.route('/mail',methods=['GET','POST'])
 def mail():
-    #if request.method="POST":
     if request.method == 'POST':
         TO=request.form.get('TO')
-	print TO
  	text=request.form.get('text')
- 	print text
   	email=Mail.mail(TO,text)
         #email=email.mail(TO,text)
 	result=email.send_mail()
-	print str(result)
 	if result=="Successful":
 	    return render_template('mail.html',result=result)
 	else:
