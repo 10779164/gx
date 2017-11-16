@@ -7,10 +7,10 @@
 			function del_host(){
 				var request;
 				request=new XMLHttpRequest();
-				request.open("POST","/del_host",true);
+				request.open("POST","/modify_host",true);
 				request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
-				data=document.getElementById("ip").innerText;
-				var g=window.confirm("是否确认删除主机！！");
+				data=document.getElementById("id").innerText;
+				var g=window.confirm("是否确认修改主机！！");
 				if (g){
 					request.send(data);
 				}
@@ -21,7 +21,7 @@
 				request.onreadystatechange = function(){
 					if (request.readyState == 4 && request.status == 200){
 						var result=document.getElementById("ip").innerText;
-						alert("主机--"+result+" 删除成功");
+						alert("主机--"+result+" 修改成功");
 					}
 				}
 			}
@@ -51,7 +51,8 @@
         <form action="/modify_host" method="post">        
 		{% for key in result %}
 		{% if key == 'id' %}
-		<span>{{ key }}:{{ result[key] }}
+		<span>{{ key }}:</span>
+		<input name="{{ key }}" value="{{ result[key] }}" readonly="readonly" style="border:none;background-color:transparent;">
 		<br>
 		<br>
 		{% else %}
@@ -64,6 +65,7 @@
 		<hr>
 		<a href="http://120.77.87.72/host_query"><button id="qx" style="float:right;margin:2px">取消</button></a>
 		<input type="submit" value="确认修改" style="color: #ED1C24;float: right;">
+		<!-- <button onclick="modify_host()" style="color:red;float:right;margin:2px">修改主机</button> -->
 		</form>
 		{% elif result == 'default' %}
 		<br>

@@ -12,6 +12,7 @@ from flask import render_template,request,url_for,session,request,flash,redirect
 from werkzeug import secure_filename
 import models as db
 import image
+import mail as Mail
 
 @app.route('/')
 @app.route('/index.html')
@@ -57,7 +58,7 @@ def login():
 	cur.close()
     	#if username==str(result[0]) and password==str(result[1]):
 	if password==result[0]:
-	    return redirect(url_for('host'))
+	    return redirect(url_for('h'))
     	else:
 	    error="*登录失败：用户名或密码错误！"
     	    return render_template('index.html',error=error)
@@ -83,6 +84,7 @@ def login():
 def success():
     #return '<h1>Success</h1>'
     return render_template('test.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -418,18 +420,18 @@ def modify_host():
     conn.select_db('hosts')
     #
     if request.method == 'POST':
-	id=request.form.get('id')
+	id_=request.form.get('id')
         hostname=request.form.get('hostname')
         ip=request.form.get('ip')
         passwd_root=request.form.get('passwd_root')
         passwd_db=request.form.get('passwd_db')
         ssh_port=request.form.get('ssh_port')
         try:
-            sql=("update host set hostname='%s',ip='%s',passwd_root='%s',passwd_db='%s',ssh_port='%s' where id='%s'") % ( hostname, ip, passwd_root, passwd_db, ssh_port, id)
+            sql=("update host set hostname='%s',ip='%s',passwd_root='%s',passwd_db='%s',ssh_port='%s' where id='%s'") % ( hostname, ip, passwd_root, passwd_db, ssh_port, id_)
             cur.execute(sql)
             conn.commit()
             #cur.close()
-            result="修改成功"
+            result="default"
             return render_template('host_modify.html',result=result)
         except Exception,e:
             conn.rollback()
@@ -456,7 +458,24 @@ def ajax():
     return render_template('index.html')
 
 
-
+@app.route('/mail',methods=['GET','POST'])
+def mail():
+    #if request.method="POST":
+    if request.method == 'POST':
+        TO=request.form.get('TO')
+	print TO
+ 	text=request.form.get('text')
+ 	print text
+  	email=Mail.mail(TO,text)
+        #email=email.mail(TO,text)
+	result=email.send_mail()
+	print str(result)
+	if result=="Successful":
+	    return render_template('mail.html',result=result)
+	else:
+	    return render_template('mail.html',result=result)
+    else:
+	return render_template('mail.html',result='')	
 
 
 
