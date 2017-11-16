@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>mail</title>
+		
+	</head>
+	<body>
+		<form action="mail" method="post">
+			<label>TO:</label>
+			<input type="text" placeholder="接受者邮箱" name="TO">
+			<br>
+			<label>Text:</label><br>
+			<textarea rows="10" cols="60" name="text" placeholder="邮件内容"></textarea>
+			<br>
+			<input type="submit" value="提交">
+		</form>
+		{% if result !='' %}
+		<p style="color:red">提示：邮件发送{{ result }}</p>
+		{% endif %}
+	</body>
+</html>
