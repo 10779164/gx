@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="static/css/index.css" />
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 			<div>
 				<input type="submit" value="登录" />
 				<a href="/forget_passwd"><font color="yellow">忘记密码?</font></a>
-				<a href="/register"><font color="yellow">注册</font></a>
+				<a href="/signin"><font color="yellow">注册</font></a>
 			</div>
 <center><p style="color:red">{{ error|default('')  }}</p></center>
 		</form><!-- form -->

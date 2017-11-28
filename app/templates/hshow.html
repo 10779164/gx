@@ -2,6 +2,7 @@
 <html>
    <title>upload file</title>
    <head>
+	<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
         <style type="text/css">
                 body{
                         background-color: blanchedalmond;
@@ -19,6 +20,7 @@
    <p>passwd_root:{{ i[3]  }}</p>
    <p>passwd_db:{{ i[4]  }}</p>
    <p>ssh_port:{{ i[5]  }}</p>
+   <p>other:{{ i[6] }}</p>
    <br>
    {% endfor %}
 </body>

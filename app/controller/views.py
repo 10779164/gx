@@ -12,6 +12,7 @@ from flask import render_template,request,url_for,session,request,flash,redirect
 from werkzeug import secure_filename
 import models as db
 import image
+import mail as Mail
 
 @app.route('/')
 @app.route('/index.html')
@@ -51,13 +52,15 @@ def login():
         #print '\n'.join(['%s:%s' % item for item in form.__dict__.items()])
     	username=request.form.get('username')
     	password=request.form.get('password')
-	sql=("select passwd from user where username='%s'") % username
+	sql=("select username,passwd from user where username='%s' and passwd='%s'") % (username,password)
 	cur.execute(sql)
         result=cur.fetchone()
 	cur.close()
-    	#if username==str(result[0]) and password==str(result[1]):
-	if password==result[0]:
-	    return redirect(url_for('host'))
+    	#if username==str(result[0]) and password==str(result[1])
+	if result!=None and result[0]=='gx':
+	    return redirect(url_for('h'))
+	elif result!=None and result[0]!='gx':
+	    return "<span style='color:red'>Error:用户无权限登录</span>" 
     	else:
 	    error="*登录失败：用户名或密码错误！"
     	    return render_template('index.html',error=error)
@@ -83,6 +86,7 @@ def login():
 def success():
     #return '<h1>Success</h1>'
     return render_template('test.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -281,47 +285,218 @@ def host_add():
 	passwd_root=request.form.get('passwd_root')
 	passwd_db=request.form.get('passwd_db')
 	ssh_port=request.form.get('ssh_port')
+	other=request.form.get('other')
 	try:
-    	    sql=("insert into host value(NULL,'%s','%s','%s','%s','%s')") % ( hostname, ip, passwd_root, passwd_db, ssh_port)
+    	    sql=("insert into host value(NULL,'%s','%s','%s','%s','%s','%s')") % ( hostname, ip, passwd_root, passwd_db, ssh_port,other)
 	    cur.execute(sql)
 	    conn.commit()
 	    #cur.close()
 	    result="**提交成功"
-	    return render_template('hadd.html',result=result)
+	    return render_template('host_add.html',result=result)
 	except Exception,e:
 	    conn.rollback()
 	    result='"**submit error:'+str(e)+'"'
-	    return render_template('hadd.html',result=result)
+	    return render_template('host_add.html',result=result)
 	cur.close()
     else:
- 	return render_template('hadd.html',result='')
+ 	return render_template('host_add.html',result='')
 
 
 @app.route('/host_del',methods = ['GET', 'POST'])
+@app.route('/host_del_search',methods = ['GET', 'POST'])
 def host_del():
     conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
     cur=conn.cursor()
     conn.select_db('hosts')
     if request.method == 'POST':
     	value=request.form.get('host')
-	a=value
-	sql=("select * from host where hostname=%s or ip=%s") % value a
+	sql=("select * from host where hostname='%s' or ip='%s'") % (value,value) 
 	cur.execute(sql)
+
+	field=[]
+	for row in cur.description:
+		field.append(row[0])
+		
+
 	record=cur.fetchall()
-	print record
+	conn.commit()
+	conn.close()
+	#print record
 	if len(record) == 0:
-	    result="搜索的主机不存在！"
+	    result=""
 	    return render_template('host_del.html',result=result)
 	else:
-	    result=record
+	    result=dict(zip(field,record[0]))
 	    return render_template('host_del.html',result=result)
     else:
-	return render_template('host_del.html')
+	return render_template('host_del_search.html',result='')
+
+
+@app.route('/del_host',methods = ['POST'])
+def del_host():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts') 
+    value=request.form.to_dict()
+    print value
+    for key in value:
+        ip=key    
+    
+    ip=ip.split(":")[1]
+    sql=("delete from host where ip='%s'") % ip
+    cur.execute(sql)   
+    record=cur.fetchall()
+    conn.commit()
+    conn.close()
+    
+    return render_template('host_del_search.html') 
+       
+
+
+##查询主机
+@app.route('/host_query',methods=['GET','POST'])
+def host_query():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    if request.method == 'POST':
+        value=request.form.get('host')
+        sql=("select * from host where hostname='%s' or ip='%s'") % (value,value)
+        cur.execute(sql)
+
+        field=[]
+        for row in cur.description:
+                field.append(row[0])
+
+
+        record=cur.fetchall()
+        conn.commit()
+        conn.close()
+        #print record
+        if len(record) == 0:
+            result=""
+            return render_template('host_query.html',result=result)
+        else:
+            result=dict(zip(field,record[0]))
+            return render_template('host_query.html',result=result)
+    else:
+        return render_template('host_query.html',result='default')
+
+
+##修改主机
+@app.route('/host_modify',methods=['GET','POST'])
+def host_modify():
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    if request.method == 'POST':
+        value=request.form.get('host')
+        sql=("select * from host where hostname='%s' or ip='%s'") % (value,value)
+        cur.execute(sql)
+
+        field=[]
+        for row in cur.description:
+                field.append(row[0])
+
+
+        record=cur.fetchall()
+        conn.commit()
+        conn.close()
+        #print record
+        if len(record) == 0:
+            result=""
+            return render_template('host_modify.html',result=result)
+        else:
+            result=dict(zip(field,record[0]))
+            return render_template('host_modify.html',result=result)
+    else:
+        return render_template('host_modify.html',result='default')
 
 
 
 
+@app.route('/modify_host',methods=['GET','POST'])
+def modify_host():
+    #连接数据库
+    conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+    cur=conn.cursor()
+    conn.select_db('hosts')
+    #
+    if request.method == 'POST':
+	id_=request.form.get('id')
+        hostname=request.form.get('hostname')
+        ip=request.form.get('ip')
+        passwd_root=request.form.get('passwd_root')
+        passwd_db=request.form.get('passwd_db')
+        ssh_port=request.form.get('ssh_port')
+        try:
+            sql=("update host set hostname='%s',ip='%s',passwd_root='%s',passwd_db='%s',ssh_port='%s' where id='%s'") % ( hostname, ip, passwd_root, passwd_db, ssh_port, id_)
+            cur.execute(sql)
+            conn.commit()
+            #cur.close()
+            result="default"
+            return render_template('host_modify.html',result=result)
+        except Exception,e:
+            conn.rollback()
+            result='"**submit error:'+str(e)+'"'
+            return render_template('host_modify.html',result=result)
+        cur.close()
+    else:
+        return render_template('host_modify.html',result='')
+    
 
+
+
+@app.route('/ajax_test')
+def ajax_test():
+    return render_template('ajax.html')
+
+@app.route('/ajax',methods=['POST'])
+def ajax():
+    #form=to_dict(request.form)
+    data=request.form.to_dict()
+    print data
+    for key in data:
+ 	print key
+    return render_template('index.html')
+
+
+
+##用户注册
+@app.route('/signin',methods=['GET','POST'])
+def signin():
+    if request.method == 'POST':
+	conn=MySQLdb.connect(user='root',passwd='flasker0115',host='localhost',charset='utf8')
+        cur=conn.cursor()
+        conn.select_db('hosts')
+        username=request.form.get('username')
+        passwd=request.form.get('password')
+        email=request.form.get('email')
+        sql=("insert into user value('','%s','%s','%s')") % (username,passwd,email)
+        cur.execute(sql)
+        conn.commit()
+        conn.close()
+        return '注册成功！<a href="/" style="color:red">返回登录页面</a>'
+    else:
+	return render_template('signin.html')
+
+
+
+##邮件
+@app.route('/mail',methods=['GET','POST'])
+def mail():
+    if request.method == 'POST':
+        TO=request.form.get('TO')
+ 	text=request.form.get('text')
+  	email=Mail.mail(TO,text)
+        #email=email.mail(TO,text)
+	result=email.send_mail()
+	if result=="Successful":
+	    return render_template('mail.html',result=result)
+	else:
+	    return render_template('mail.html',result=result)
+    else:
+	return render_template('mail.html',result='')	
 
 
 

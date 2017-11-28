@@ -1,88 +1,66 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title></title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/record_form.css" />
+		<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+		<script type="text/javascript" src="static/js/auth.js"></script>
+		<title>添加主机</title>
 		<style>
 			body{
-				height: 1200px;
-			}
-			
-			#left{
-				width: 25%;
-				height: 100%;
-				float: left;
-			}
-			#mid{
-				width: 50%;
-				height: 100%;
-				background-color: #B8DDFF;
-				float: left;
-			}
-			#right{
-				float: left;
+				background-color: azure; <!-- #B8DDFF;-->
 			}
 			label{
-				margin: 2px auto;
+				margin: 40px 0px;
+				display: block;
+			}
+			#left{
+				width: 30%;
+				
 			}
 			input{
-				margin: 2px auto;
-				width: auto;
+				width: 220px;
 				height: 30px;
 			}
-			span{
-				font-size: 30px;
-			}
-			.button{
-				font-size: 20px;
-				color: #ED1C24;
-				position: absolute;
-			}
-			
 		</style>
 	</head>
 	<body>
-		<div id="left"></div>
-		<div id="mid">
-			<form action="/host_add" method="post" class="STYLE-NAME">
-			<center><h1>添加主机</h1></center>
-			<label>
-			<span>主机名:</span>
-			<input id="hostname" type="text" name="hostname" placeholder="主机名称" />
-			</label>
-			<br>
-			<label>
-			<span>IP地址:</span>
-			<input id="ip" type="text" name="ip" placeholder="主机IP地址" />
-			</label>
-			<br>
-			<label>
-			<span>root密码:</span>
-			<input id="passwd_root" name="passwd_root" placeholder="root用户密码" />
-			</label>
-			<br>
-			<label>
-			<span>数据库密码:</span>
-			<input id="passwd_db" name="passwd_db" placeholder="数据库root用户密码" />
-			</label>
-			<br>
-			<label>
-			<span>ssh端口:</span>
-			<input id="ssh_port" name="ssh_port" placeholder="ssh登录端口" />
-			<br>
-			<label>
-			<textarea rows="30" cols="100%" name="other">
-			</textarea>
-			</label>
-			</label>
-			<input type="submit" class="button" value="提交" />
-			</label>
-		 	<br>
-			<br>
-			<font color="red">{{ result|default('') }}
-			</form>
-		</div>
-		<div id="right"></div>
+		<form action="/host_add" method="post" class="STYLE-NAME">
+<h1>添加主机
+</h1>
+	<div id="left">
+		<label>
+		<span>主机名:</span>
+		<input id="hostname" type="text" name="hostname" placeholder="主机名称" />
+		</label>
+		<label>
+		<span>IP地址:</span>
+		<input id="ip" type="text" name="ip" placeholder="主机IP地址" />
+		</label>
+		<label>
+		<span>root密码:</span>
+		<input id="passwd_root" name="passwd_root" placeholder="root用户密码" />
+		</label>
+		<label>
+		<span>数据库密码:</span>
+		<input id="passwd_db" name="passwd_db" placeholder="数据库root用户密码" />
+		</label>
+		<label>
+		<span>ssh端口:</span>
+		<input id="ssh_port" name="ssh_port" placeholder="ssh登录端口" />
+		</label>
+		<label>
+		<label>
+		<span>其他:</span>
+		<textarea rows="12" cols="80%" id="other" name="other" placeholder="其它信息！(建议json格式：{user:test;passwd:123456})"></textarea>
+		</label>
+		</label>
+		<input type="submit" value="提交" onclick="auth()" />
+		</label>
+		<br>
+		<br>
+		<font color="red">{{ result|default('') }}</font>
+		<br>
+	</div>
 	</body>
 </html>
-
