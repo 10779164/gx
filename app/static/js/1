@@ -1,0 +1,16 @@
+function auth(){
+        hostname=document.getElementById("hostname").value;
+	alert(hostname);
+        ip=document.getElementById("ip").value;
+        passwd_root=document.getElementById("passwd_root").value;
+        passwd_db=document.getElementById("passwd_db").value;
+        ssh_port=document.getElementById("ssh_port").value;
+        other=document.getElementById("other").value;
+        if (hostname==""){
+                alert("主机名不能为空");
+                return false;
+                document.getElementById("hostname").focus();
+        }
+   
+}
+
