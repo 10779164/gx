@@ -45,24 +45,33 @@
         		<input type="search" placeholder="请输入主机IP或主机名" name="host">
         		<input type="submit" value="搜索">
 		</form>
- 		{% if result != '' and result != 'default' %}	
-		<p style="text-align: center;">主机信息</p>
+
+		{% if result != '' and result != 'default' %}   
+                <p style="text-align: center;">主机信息</p>
                 <hr style="color: aquamarine;">
                 <br>
-        <form action="/modify_host" method="post">        
-		{% for key in result %}
-		{% if key == 'id' %}
-		<span>{{ key }}:</span>
-		<input name="{{ key }}" value="{{ result[key] }}" readonly="readonly" style="border:none;background-color:transparent;">
+		<form action="/modify_host" method="post">
+		<span>id:</span>
+		<input name="id" value="{{ result['id'] }}" readonly="readonly" style="border:none;background-color:transparent;">
 		<br>
+		<span>主机名:</span>
+                <input name="hostname" value="{{ result['hostname'] }}">
 		<br>
-		{% else %}
-		<span>{{ key }}:</span>
-                <input name="{{ key }}" value="{{ result[key] }}">
-                <br>
+		<span>IP:</span>
+                <input name="ip" value="{{ result['ip'] }}">
 		<br>
-                {% endif %}
-		{% endfor %}
+		<span>ROOT密码:</span>
+                <input name="passwd_root" value="{{ result['passwd_root'] }}">
+		<br>
+		<span>数据库密码:</span>
+                <input name="passwd_db" value="{{ result['passwd_db'] }}">
+		<br>
+		<span>ssh端口:</span>
+                <input name="ssh_port" value="{{ result['ssh_port'] }}">
+		<br>
+		<span>其他信息:</span>
+                <input name="other" value="{{ result['other'] }}">
+		<br>
 		<hr>
 		<a href="http://120.77.87.72/host_query"><button id="qx" style="float:right;margin:2px">取消</button></a>
 		<input type="submit" value="确认修改" style="color: #ED1C24;float: right;">

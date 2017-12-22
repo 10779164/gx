@@ -45,11 +45,13 @@
                 <hr style="color: aquamarine;">
                 <br>
                 
-		{% for key in result %}
-                <p id="{{ key }}"> {{ key }}:{{ result[key] }} </p>
-                <br>
-                
-		{% endfor %}
+		<p id="hostname">主机名：{{ result['hostname']  }}</p>
+		<p id="ip">IP：{{ result['ip']  }}</p>
+		<p id="passwd_root">root密码：{{ result['passwd_root']  }}</p>
+		<p id="passwd_db">数据库密码：{{ result['passwd_db'] }}</p>
+		<p id="ssh_port">ssh端口：{{ result['ssh_port']  }}</p>
+		<p id="other">其他：{{ result['other']  }}</p>
+
 		<hr>
 		<a href="http://120.77.87.72/host_query"><button id="qx">确认</button></a>
 	

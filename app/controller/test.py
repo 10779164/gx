@@ -17,3 +17,8 @@ def local_time():
     local_week=time.strftime('%A')
     rel_week=week[local_week]
     return local_time+' '+rel_week
+
+
+@app.route("/wechat")
+def wechat():
+    return '<image src="static/images/wechat.jpeg">'

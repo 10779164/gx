@@ -57,10 +57,10 @@ def login():
         result=cur.fetchone()
 	cur.close()
     	#if username==str(result[0]) and password==str(result[1])
-	if result!=None and result[0]=='gx':
+	if result!=None: #and result[0]=='gx':
 	    return redirect(url_for('h'))
-	elif result!=None and result[0]!='gx':
-	    return "<span style='color:red'>Error:用户无权限登录</span>" 
+	elif result!=None and result[0]=='gx':
+	    return "<span style='color:red'>Error:用户'"+result[0]+"'无权限登录</span>" 
     	else:
 	    error="*登录失败：用户名或密码错误！"
     	    return render_template('index.html',error=error)
@@ -363,22 +363,24 @@ def host_query():
         value=request.form.get('host')
         sql=("select * from host where hostname='%s' or ip='%s'") % (value,value)
         cur.execute(sql)
-
-        field=[]
-        for row in cur.description:
-                field.append(row[0])
-
-
-        record=cur.fetchall()
+	row=cur.fetchone()
+	
         conn.commit()
         conn.close()
         #print record
-        if len(record) == 0:
+        if row == None:
             result=""
             return render_template('host_query.html',result=result)
         else:
-            result=dict(zip(field,record[0]))
-            return render_template('host_query.html',result=result)
+            field={}
+	    field['id']=row[0]
+	    field['hostname']=row[1]
+	    field['ip']=row[2]
+	    field['passwd_root']=row[3]
+	    field['passwd_db']=row[4]
+	    field['ssh_port']=row[5]
+   	    field['other']=row[6]
+            return render_template('host_query.html',result=field)
     else:
         return render_template('host_query.html',result='default')
 
@@ -393,22 +395,23 @@ def host_modify():
         value=request.form.get('host')
         sql=("select * from host where hostname='%s' or ip='%s'") % (value,value)
         cur.execute(sql)
-
-        field=[]
-        for row in cur.description:
-                field.append(row[0])
-
-
-        record=cur.fetchall()
-        conn.commit()
+        row=cur.fetchone()
+	conn.commit()
         conn.close()
-        #print record
-        if len(record) == 0:
+
+	if row == None:
             result=""
-            return render_template('host_modify.html',result=result)
+            return render_template('host_query.html',result=result)
         else:
-            result=dict(zip(field,record[0]))
-            return render_template('host_modify.html',result=result)
+            field={}
+            field['id']=row[0]
+            field['hostname']=row[1]
+            field['ip']=row[2]
+            field['passwd_root']=row[3]
+            field['passwd_db']=row[4]
+            field['ssh_port']=row[5]
+            field['other']=row[6]
+            return render_template('host_modify.html',result=field)
     else:
         return render_template('host_modify.html',result='default')
 
@@ -429,8 +432,9 @@ def modify_host():
         passwd_root=request.form.get('passwd_root')
         passwd_db=request.form.get('passwd_db')
         ssh_port=request.form.get('ssh_port')
+	other=request.form.get('other')
         try:
-            sql=("update host set hostname='%s',ip='%s',passwd_root='%s',passwd_db='%s',ssh_port='%s' where id='%s'") % ( hostname, ip, passwd_root, passwd_db, ssh_port, id_)
+            sql=("update host set hostname='%s',ip='%s',passwd_root='%s',passwd_db='%s',ssh_port='%s',other='%s' where id='%s'") % ( hostname, ip, passwd_root, passwd_db, ssh_port, other,id_)
             cur.execute(sql)
             conn.commit()
             #cur.close()
@@ -472,13 +476,20 @@ def signin():
         username=request.form.get('username')
         passwd=request.form.get('password')
         email=request.form.get('email')
-        sql=("insert into user value('','%s','%s','%s')") % (username,passwd,email)
-        cur.execute(sql)
-        conn.commit()
-        conn.close()
-        return '注册成功！<a href="/" style="color:red">返回登录页面</a>'
+	user_sql=("select username from user where username='%s'") % username
+	cur.execute(user_sql)
+	user_query=cur.fetchone()
+	if user_query == None:
+            sql=("insert into user value('','%s','%s','%s')") % (username,passwd,email)
+            cur.execute(sql)
+            conn.commit()
+            conn.close()
+            return '注册成功！<a href="/" style="color:red">返回登录页面</a>'
+	else:
+	    default="注册失败：用户 "+username+" 已存在"
+	    return render_template('signin.html',default=default)
     else:
-	return render_template('signin.html')
+	return render_template('signin.html')#,default='')
 
 
 
@@ -499,7 +510,9 @@ def mail():
 	return render_template('mail.html',result='')	
 
 
-
+@app.route("/music")
+def music():
+    return render_template('music.html')
 
 
 

@@ -1,13 +1,13 @@
 body{
-	background-image: url(../images/bgi.jpg);
+	background-image: url(../images/bg.jpg);
 }
 
 #container{
 	margin: 0 auto;
-	height: 500px;
+	height: 520px;
 	width: 500px;
-	background-color: #CCCCCC;
-	margin-top: 120px;
+	background-color: rgba(255,255,255,0.1);
+	margin-top: 80px;
 }
 
 input{
@@ -17,6 +17,7 @@ input{
 	margin-left: 20px;
 	margin-bottom: 20px;
 	margin-top: 20px;
+	font-size:  large;
 	
 }
 
@@ -26,10 +27,13 @@ button{
 	margin-left: 20px;
 	margin-top: 20px;
 	text-align: center;
+	color:#C0A16B;
+        background-color:  rgba(255.255.255.0.3);
 }
 
 h1 {
 	text-align: center;
+	color: gold;
 }
 
 hr{
@@ -37,9 +41,18 @@ hr{
 }
 
 label{
-	display: block;
+	display:  block;
 	border: 3px solid #D5D5D5;
 	margin-left: 20px;
 	width: 60px;
 	text-align: center;
+	background-color:  white;
+	color: gold;
+}
+
+
+#msg{
+	display: block;
+	margin-left: 20px;
+        margin-top: 20px;	
 }
