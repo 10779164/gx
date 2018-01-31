@@ -1,12 +1,58 @@
-{% extends "admin/nav.html"  %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>R-anger</title>
+		<link rel="stylesheet" href="../static/css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+		
+		<style>
+			.index-video{
+				max-width: 100%;
+				display: inline;	
+			}
+			nav{
+				height: 60px;
+			}
+			.navbar-header>p{
+				color: #fff;
+				font-size: 20px;
+				text-align: center;
+				line-height: 60px;
+			}			
+			a:hover{
+				background-color: burlywood;
+			}
+		</style>
+		
+</head> 
+<body style="width: 100%;height: 100%;">
+		<nav class="navbar navbar-fixed-top" style="background-color: rgba(0,0,0,0.1);margin: 0 0;">
+			<div class="container">
+				<div class="navbar-header">
+					<p>
+					R-anger
+					</p>
+				</div>
+			</div>
+			
+		</nav>
+		
+		<div id="vd" style="position: absolute;">
+			
+			<video class="index-video"    autoplay="autoplay"  loop="loop"  style="display: inline;">
+					<source src="../static/video/theme.mp4" type="video/mp4"></source>	
+			</video>
+		</div>
+		
+		<div style="margin: 120px 200px;float: left;position: relative;color: white;">
+			<h1>网站正在开发中~~~</h1>
+			<h1>敬请期待！</h1>	
+			<br><br>
+			<a href="http://120.77.87.72/admin/ht" style="border: 3px solid silver;border-radius:20px ;text-decoration: none;padding: 20px;color: white;font-size: 16px;">返回首页</a>
+		</div>
+		
+</body>
+</html>  
 
-{% block gx  %}
-<div id="container" style="background-color:#eee;height: 650px;width:100%;border-button:2px solid red">
-<div style="width:14%;height:650px;border:2px solid #a1a1a1;float:left;border-radius:5px" class="left">
-<p style="color:palegreen;text-align:center;font-size:30px;magin-top:100px;">功能区</p>
-</div>
-<div style="width:86%;height:650px;float:left;magin-left:5px" class="right">
-<p style="color:palegreen;text-align:center;font-size:30px;magin-top:100px;">内容展示区</p>
-</div>
-</div>
-{% endblock %}

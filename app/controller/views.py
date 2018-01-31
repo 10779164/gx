@@ -5,14 +5,16 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 import flask
 import forms
-import MySQLdb
+#import MySQLdb
 from app import app
 from flask import render_template,request,url_for,session,request,flash,redirect
 #from app.forms import LoginForm,RegistForm
 from werkzeug import secure_filename
-import models as db
+import db as db
 import image
 import mail as Mail
+from .. import DB
+from ..models import user
 
 @app.route('/')
 @app.route('/index.html')
@@ -57,9 +59,11 @@ def login():
         result=cur.fetchone()
 	cur.close()
     	#if username==str(result[0]) and password==str(result[1])
-	if result!=None: #and result[0]=='gx':
+	
+ 	#result = user.query.filter(username=username,passwd=password).first()
+	if result != None and result[0]=='gx':
 	    return redirect(url_for('h'))
-	elif result!=None and result[0]=='gx':
+	elif result!=None and result[0]!='gx':
 	    return "<span style='color:red'>Error:用户'"+result[0]+"'无权限登录</span>" 
     	else:
 	    error="*登录失败：用户名或密码错误！"
@@ -91,6 +95,10 @@ def success():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html')
+
+@app.errorhandler(500)  
+def internal_server_error(e):  
+    return render_template('500.html')
 
 
 @app.route('/for')

@@ -13,4 +13,6 @@ OPENID_PROVIDERS = [
 file_path = '/flask/gx/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-
+SQLALCHEMY_DATABASE_URI='mysql://root:flasker0115@localhost:3306/hosts'
+SQLALCHEMY_COMMIT_ON_TEARDOWN=True
+SQLALCHEMY_TRACK_MODIFICATIONS=False

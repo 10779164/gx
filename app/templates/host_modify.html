@@ -4,6 +4,14 @@
 		<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
 		<meta charset="UTF-8">
 		<title>修改主机</title>
+		<style>
+			#content{
+				width:30%;
+				height:18px;
+				margin:10px 0;
+				}
+				
+		</style>
 		<script>
 			function del_host(){
 				var request;
@@ -47,34 +55,40 @@
 		</form>
 
 		{% if result != '' and result != 'default' %}   
-                <p style="text-align: center;">主机信息</p>
+                <p style="text-align: center;">主机信息!</p>
                 <hr style="color: aquamarine;">
-                <br>
 		<form action="/modify_host" method="post">
+		<div id="content">
 		<span>id:</span>
 		<input name="id" value="{{ result['id'] }}" readonly="readonly" style="border:none;background-color:transparent;">
-		<br>
+		</div>
+		<div id="content">
 		<span>主机名:</span>
                 <input name="hostname" value="{{ result['hostname'] }}">
-		<br>
+		</div>
+		<div id="content">
 		<span>IP:</span>
                 <input name="ip" value="{{ result['ip'] }}">
-		<br>
-		<span>ROOT密码:</span>
+		</div>
+		<div id="content">
+		<span>root密码:</span>
                 <input name="passwd_root" value="{{ result['passwd_root'] }}">
-		<br>
+		</div>
+		<div id="content">
 		<span>数据库密码:</span>
                 <input name="passwd_db" value="{{ result['passwd_db'] }}">
-		<br>
+		</div>
+		<div id="content">
 		<span>ssh端口:</span>
                 <input name="ssh_port" value="{{ result['ssh_port'] }}">
-		<br>
+		</div>
+		<div id="content">
 		<span>其他信息:</span>
                 <input name="other" value="{{ result['other'] }}">
-		<br>
+		</div>
 		<hr>
-		<a href="http://120.77.87.72/host_query"><button id="qx" style="float:right;margin:2px">取消</button></a>
-		<input type="submit" value="确认修改" style="color: #ED1C24;float: right;">
+		<a href="http://120.77.87.72/host_query"><button id="qx" style="float:right;margin:8px 3px;">取消</button></a>
+		<input type="submit" value="确认修改" style="color: #ED1C24;float: right;margin:8px 3px;">
 		<!-- <button onclick="modify_host()" style="color:red;float:right;margin:2px">修改主机</button> -->
 		</form>
 		{% elif result == 'default' %}

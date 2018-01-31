@@ -3,7 +3,6 @@
 import smtplib
 import string
 
-#mem=psutil.virtual_memory()
 class mail:
     def __init__(self,TO,text):
         self.TO=TO
@@ -14,7 +13,6 @@ class mail:
         SUBJECT="Test email for python by gx"
         TO=self.TO
         FROM="10779164@qq.com"
-        #text="ÄãºÃ°¡£¬Ð¡ÅóÓÑ£¡"
         BODY=string.join((
             "From: %s" % FROM,
             "To: %s" % TO,
@@ -26,7 +24,7 @@ class mail:
             server=smtplib.SMTP_SSL()
             server.connect(HOST,"465")
             #server.starttls()
-            server.login("10779164@qq.com","sriudeacxlmocaec")  ##Õâ¸öÃÜÂëÊÇ¿ªÆôÓÊÏäSMTP·þÎñÊ±´úÌæQQÃÜÂëµÄÑéÖ¤Âë
+            server.login("10779164@qq.com","lmgaevctugljcbee")
             server.sendmail(FROM,TO,BODY)
             server.quit()
             return "Successful"

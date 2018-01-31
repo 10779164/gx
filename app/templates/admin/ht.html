@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="../static/css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/css/ht.css">
+		<link rel="stylesheet" href="../static/css/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+		<script src="../static/js/echarts.common.min.js"></script>
+		<title>R-anger</title>
+	</head>
+	<body style="height: 100%; background-color: white;">
+		
+		<!--
+        	作者：10779164@qq.com
+        	时间：2018-01-15
+        	描述：顶部导航栏
+        -->
+<nav class="navbar navbar-default navbar-fixed-top" >
+	<div class="container" style="margin:10px auto;">
+		<!-- <div class="navbar-header">
+			<a href="http://120.77.87.72" class="navbar-brand" target="_blank"><img src="img/1.jpg"  style="height: 60px;"> yuan</a>
+		</div> -->
+		<div class="navbar-header" style="margin-left: 0px;height: 100%;width: 120px;float: left;">
+            <a href="http://120.77.87.72" class="navbar-brand111" target="_blank" >
+                <img src="../static/images/tx.jpg" style="height: 40px;" class="img-circle" ></a>
+        </div>
+		<div class="collapse navbar-collapse">
+			<form class="navbar-form navbar-left"  action="http://www.baidu.com/baidu" target="_blank" style="margin-top:10px;margin-left: 120px;">
+                <div class="form-group input-group">
+                	<table bgcolor="#FFFFFF"><tr><td>
+                	<input name="tn" type="hidden" value="baidu">
+                    <input type="text" class="form-control" name="word" size="30" placeholder="百度二下">
+                    <span class="input-group-btn">
+                        <input type="submit" value="搜索" class="form-control search">
+                    </span>
+                    </td></tr></table>
+                </div>
+            </form>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a class="nav-top" href="http://120.77.87.72/admin/" target="_blank"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+			<li><a class="nav-top" href="http://120.77.87.72/" target="_blank"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+			<li><a class="nav-top" href="#"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+  			<li><a class="nav-top" href="http://120.77.87.72/signin" target="_blank"><span class="glyphicon glyphicon-new-window"></span> 注册</a></li>		
+			<li><a class="nav-top" href="#"><span class="glyphicon glyphicon-user"></span> 用户</a></li>
+			<li><a class="nav-top" href="#" data-toggle="modal" data-target="#myModal" onclick="test()" > <span class="glyphicon glyphicon-hd-video"></span> 极乐净土</a></li>	
+		</ul>
+		</div>
+	</div>
+</nav>
+		
+		<div class="container-fluid" style="float: left;margin: 0px 0px;padding: 0px 0px;">
+		<div class="col-md-2 left-nav" style="padding: 0px 0px;width: 160px;margin-top: 73px;">
+			<!--
+            	作者：10779164@qq.com
+            	时间：2018-01-15
+            	描述：logo
+            -->
+			<div style="width: 100%; text-align: center;">
+				<img src="../static/images/5.jpg" alt="logo" class="img-circle" style="max-height: 120px;max-width: 120px;padding: 20px 20px;">
+				<p style="text-align: center;color: white;">hi，admin</p>		
+			</div>
+			
+			<hr>
+			
+			<ul class="nav nav-tabs nav-stacked" id="main-nav" >
+				<li style="list-style: none;margin: 0px 0px;">
+					<a id="tt" data-toggle="collapse" data-target="#test"><i class="glyphicon glyphicon-home" style="color: gold;"></i><span class="pull-right glyphicon glyphicon-arrow-down"></span>  菜单</a>
+			
+					<ul class="collapse a" id="test" style="list-style: none;">
+						<li>
+							<a href="#"><span class="fa fa-battery-1"></span> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-battery-2"></span> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-battery-3"></span> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-battery-4"></span> 主题</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			
+			<ul class="nav nav-tabs nav-stacked" id="main-nav">
+				<li style="list-style: none;margin: 0px 0px;">
+					<a data-toggle="collapse" data-target="#test1"><i class="glyphicon glyphicon-home" style="color: gold;"></i><span class="pull-right glyphicon glyphicon-arrow-down"></span>  也叫菜单</a>
+			
+					<ul class="collapse a" id="test1" style="list-style: none;">
+						<li>
+							<a href="#"><span class="fa fa-comment"> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-comment-o"> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-commenting"> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-commenting-o"> 主题</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		
+		
+			<ul class="nav nav-tabs nav-stacked" id="main-nav">
+				<li style="list-style: none;margin: 0px 0px;">
+					<a data-toggle="collapse" data-target="#test3"><i class="glyphicon glyphicon-home" style="color: gold;"></i><span class="pull-right glyphicon glyphicon-arrow-down"></span>  还叫菜单</a>
+			
+					<ul class="collapse a" id="test3" style="list-style: none;">
+						<li>
+							<a href="#"><span class="fa fa-envelope"> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-envelope-o"> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-envelope-open"> 主题</a>
+						</li>
+						<li>
+							<a href="#"><span class="fa fa-envelope-square"> 主题</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+	</div>
+	</div>
+		
+	
+	<div id="main1" style="float: left;margin: 93px 20px;border: 2px  double #262626;border-radius:10px ; height: 520px;width: 680px;background-color: white;">
+		
+	</div>
+	  
+	
+	
+	<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="right: auto;width: 100%;height: 100%; margin: 73.13px 280px;float: none;">
+  <div class="modal-dialog" role="document" style="margin: 0 0;">
+    <div class="modal-body" style="margin: 0 0;padding: 0 0;">
+         	<video  loop="loop"  controls="controls" style="display: inline; " id="test2">
+  		<source src="../static/video/hd - 极乐净土.mp4" type="video/mp4"></source>
+  	</video>
+     
+      </div>
+  </div>
+</div>
+  
+		
+	<script src="../static/js/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'github2017编程语言热度榜'
+            },
+            tooltip: {},
+            legend: {
+                data:['热度']
+            },
+            xAxis: {
+                data: ["javascript","C++","java","php","python","C"]
+            },
+            yAxis: {},
+            series: [{
+                name: '职业人数',
+                type: 'bar',
+                data: [368, 215, 260, 101, 320, 182]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+     
+        myChart.setOption(option);
+        
+        
+      
+    </script>
+    
+    <script type="text/javascript">
+			  function test(){
+				var a=document.getElementById("test2");
+				a.play();
+			}
+		</script>
+	
+	</body>
+</html>
+
